@@ -1,7 +1,7 @@
 [project]
 name = "eventloop-guard"
 version = "0.1.0"
-description = "Add your description here"
+description = "ASGI Event Loop Contention, Lag Telemetry, and Load Shedding"
 readme = "README.md"
 authors = [
     { name = "sofijasljusar", email = "sofija.sljusar@gmail.com" }
@@ -10,6 +10,7 @@ requires-python = ">=3.13"
 dependencies = [
     "fastapi>=0.165.0",
     "httpx>=0.28.1",
+    "pydantic-settings>=2.16.3",
     "uvicorn[standard]>=0.54.0",
 ]
 
@@ -23,3 +24,14 @@ dev = [
     "pytest-asyncio>=1.5.0",
     "ruff>=0.17.6",
 ]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "ASYNC"]
