@@ -1,2 +1,1 @@
-def hello() -> str:
-    return "Hello from eventloop-guard!"
+"""ASGI event loop contention, lag telemetry, and load shedding."""
