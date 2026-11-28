@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import asyncio
-
+import json
 from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor
 from contextlib import asynccontextmanager
@@ -36,7 +36,8 @@ class Guardrails:
 
 
 class BoundedExecutor:
-    """Fixed-size thread pool with a hard admission cap (rejects access instead of unbounded queueing)."""
+    """Fixed-size thread pool with a hard admission cap
+    (rejects access instead of unbounded queueing)."""
     def __init__(self, max_workers: int, max_queued: int) -> None:
         self._max_workers = max_workers
         self._max_queued = max_queued

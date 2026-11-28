@@ -178,7 +178,12 @@ async def cpu_work(
     start = time.perf_counter()
     digest = hashlib.pbkdf2_hmac("sha256", b"secret-key", b"salt", iterations)
     elapsed_ms = round((time.perf_counter() - start) * 1000.0, 2)
-    return {"mode": "cpu_bound", "iterations": iterations, "elapsed_ms": elapsed_ms, "hash": digest.hex()[:12]}
+    return {
+        "mode": "cpu_bound",
+        "iterations": iterations,
+        "elapsed_ms": elapsed_ms,
+        "hash": digest.hex()[:12]
+    }
 
 
 @app.get("/metrics", response_class=PlainTextResponse)

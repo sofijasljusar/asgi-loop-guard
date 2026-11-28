@@ -6,7 +6,6 @@ import math
 import time
 from dataclasses import dataclass
 
-
 import httpx
 
 

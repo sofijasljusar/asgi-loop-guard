@@ -32,7 +32,8 @@ class LocalUpstreamServer:
 
                     time.sleep(min(delay_ms, 10_000) / 1000.0)
 
-                payload = json.dumps({"ok": status_code < 400, "delay_ms": delay_ms}).encode("utf-8")
+                payload = (json.dumps({"ok": status_code < 400, "delay_ms": delay_ms})
+                           .encode("utf-8"))
                 self.send_response(status_code)
                 self.send_header("Content-Type", "application/json")
                 self.send_header("Content-Length", str(len(payload)))
