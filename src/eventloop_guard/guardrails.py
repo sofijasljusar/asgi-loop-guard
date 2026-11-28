@@ -142,7 +142,7 @@ class BoundedExecutor:
 
 class AsyncConcurrencyGate:
     """Bounds concurrent async calls with a semaphore and non-blocking admission."""
-    def __init(self, max_concurrent: int) -> None:
+    def __init__(self, max_concurrent: int) -> None:
         self._semaphore = asyncio.Semaphore(max_concurrent)
         self._active = 0
         self._rejected = 0

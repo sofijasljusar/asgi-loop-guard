@@ -149,7 +149,7 @@ async def io_sync_in_async(
 @app.get("/io/guarded-sync")
 async def io_guarded_sync(
         request: Request,
-        delay_ms: int = Query(default=settings.default_timeout_s, gt=0.05, le=10.0),
+        delay_ms: int = Query(default=settings.default_timeout_s, gt=0, le=5000),
         timeout_s: float = Query(default=settings.default_timeout_s, gt=0.05, le=10.0),
 ) -> dict[str, object]:
     """Offloads blocking I/O to a bounded thread pool with hard admission cap and timeout."""

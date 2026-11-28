@@ -25,6 +25,7 @@ class EventLoopMonitor:
     def __init__(self, interval_ms: float = 10.0, history_size: int = 2000) -> None:
         self.interval_s = interval_ms / 1000.0
         self._samples: deque[float] = deque(maxlen=history_size)
+        self._max_ms: float = 0.0
         self._task: asyncio.Task[None] | None = None
         self._stop_event = asyncio.Event()
 
@@ -45,7 +46,7 @@ class EventLoopMonitor:
                 pass
             self._task = None
 
-    async def run(self, loop: asyncio.AbstractEventLoop) -> None:
+    async def _run(self, loop: asyncio.AbstractEventLoop) -> None:
         while not self._stop_event.is_set():
             expected_deadline = loop.time() + self.interval_s
             await asyncio.sleep(self.interval_s)
