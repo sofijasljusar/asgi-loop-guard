@@ -31,7 +31,7 @@ def test_io_to_async_succeeds() -> None:
 def test_io_async_times_out_cleanly() -> None:
     with TestClient(app) as client:
         resp = client.get("/io/async", params={"delay_ms": 500, "timeout_s": 0.1})
-        assert resp.status_code == 200
+        assert resp.status_code == 504
         assert resp.json()["error"] == "upstream_timeout"
 
 
